@@ -11,8 +11,7 @@ impl MirTypeTrait for MirTypeDartOpaque {
         f: &mut F,
         mir_context: &impl MirContext,
     ) {
-        self.get_delegate_rust().visit_types(f, mir_context);
-        self.get_delegate_dart().visit_types(f, mir_context);
+        self.get_delegate().visit_types(f, mir_context)
     }
 
     fn safe_ident(&self) -> String {
@@ -29,11 +28,7 @@ impl MirTypeTrait for MirTypeDartOpaque {
 }
 
 impl MirTypeDartOpaque {
-    pub(crate) fn get_delegate_rust(&self) -> MirType {
+    pub(crate) fn get_delegate(&self) -> MirType {
         MirType::Primitive(MirTypePrimitive::Usize)
-    }
-
-    pub(crate) fn get_delegate_dart(&self) -> MirType {
-        MirType::Primitive(MirTypePrimitive::Isize)
     }
 }

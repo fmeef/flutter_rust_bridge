@@ -16,8 +16,9 @@ pub(super) fn run(
     rust_crate_dir: &Path,
     interest_crate_name: Option<&CrateName>,
     dumper: &Dumper,
+    features: Option<&[String]>,
 ) -> Result<syn::File> {
-    let text = run_with_frb_aware(rust_crate_dir, interest_crate_name)?;
+    let text = run_with_frb_aware(rust_crate_dir, interest_crate_name, features)?;
     (dumper.with_content(ConfigDumpContent::Source)).dump_str("cargo_expand.rs", &text)?;
     Ok(syn::parse_file(&text)?)
 }
@@ -25,12 +26,14 @@ pub(super) fn run(
 fn run_with_frb_aware(
     rust_crate_dir: &Path,
     interest_crate_name: Option<&CrateName>,
+    features: Option<&[String]>,
 ) -> Result<String> {
     Ok(decode_macro_frb_encoded_comments(&run_raw(
         rust_crate_dir,
         interest_crate_name,
         "--cfg frb_expand",
         true,
+        features,
     )?)
     .into_owned())
 }
@@ -55,15 +58,23 @@ fn run_raw(
     interest_crate_name: Option<&CrateName>,
     extra_rustflags: &str,
     allow_auto_install: bool,
+    features: Option<&[String]>,
 ) -> Result<String> {
     // let _pb = simple_progress("Run cargo-expand".to_owned(), 1);
     debug!("Running cargo expand in '{rust_crate_dir:?}'");
 
-    let args_choosing_crate = if let Some(interest_crate_name) = interest_crate_name {
+    let mut args_choosing_crate = if let Some(interest_crate_name) = interest_crate_name {
         vec!["-p", interest_crate_name.raw()]
     } else {
         vec![]
     };
+
+    if let Some(features) = features {
+        for feature in features {
+            args_choosing_crate.push("--features");
+            args_choosing_crate.push(feature.as_str());
+        }
+    }
 
     let args = command_args!(
         "expand",
@@ -88,7 +99,13 @@ fn run_raw(
         if stderr.contains("no such command: `expand`") && allow_auto_install {
             info!("Cargo expand is not installed. Automatically install and re-run.");
             install_cargo_expand()?;
-            return run_raw(rust_crate_dir, interest_crate_name, extra_rustflags, false);
+            return run_raw(
+                rust_crate_dir,
+                interest_crate_name,
+                extra_rustflags,
+                false,
+                features,
+            );
         }
         // This will stop the whole generator and tell the users, so we do not care about testing it
         // frb-coverage:ignore-start

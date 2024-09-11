@@ -60,6 +60,7 @@ fn compute_codegen_config_from_naive_command_args(args: GenerateCommandArgsPrima
         stop_on_error: positive_bool_arg(args.stop_on_error),
         dump: args.dump,
         dump_all: positive_bool_arg(args.dump_all),
+        features: args.features,
     }
 }
 
@@ -98,6 +99,28 @@ mod tests {
         let config = run_command_line(vec!["", "generate"])?;
         assert_eq!(config.rust_input.unwrap(), "crate::hello".to_string());
         assert!(!config.dart3.unwrap());
+
+        Ok(())
+    }
+
+    #[test]
+    #[serial]
+    fn test_compute_codegen_features() -> anyhow::Result<()> {
+        configure_opinionated_test_logging();
+        set_cwd_test_fixture("binary/commands_parser/features")?;
+
+        let config = run_command_line(vec![
+            "",
+            "generate",
+            "--features",
+            "feature1",
+            "--features",
+            "feature2",
+        ])?;
+        assert_eq!(
+            config.features,
+            Some(vec!["feature1".to_owned(), "feature2".to_owned()])
+        );
 
         Ok(())
     }
