@@ -40468,6 +40468,11 @@ class RustLibWire implements BaseWire {
           .wire__crate__api__misc_no_twin_example_a__my_struct_with_sync_sync(
               port_, that);
 
+  void wire__crate__api__misc_no_twin_example_a__onlyTestFeature(
+          NativePortType port_) =>
+      wasmModule
+          .wire__crate__api__misc_no_twin_example_a__onlyTestFeature(port_);
+
   void wire__crate__api__misc_no_twin_example_a__same_function_name_in_different_files(
           NativePortType port_) =>
       wasmModule
@@ -63144,6 +63149,9 @@ extension type RustLibWasmModule._(JSObject _) implements JSObject {
   external void
       wire__crate__api__misc_no_twin_example_a__my_struct_with_sync_sync(
           NativePortType port_, JSAny that);
+
+  external void wire__crate__api__misc_no_twin_example_a__onlyTestFeature(
+      NativePortType port_);
 
   external void
       wire__crate__api__misc_no_twin_example_a__same_function_name_in_different_files(
