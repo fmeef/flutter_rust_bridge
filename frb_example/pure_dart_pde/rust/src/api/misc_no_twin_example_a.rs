@@ -199,6 +199,6 @@ impl MyStructWithSync {
 
 // Test if feature flags work correctly
 #[cfg(feature = "test")]
-pub fn onlyTestFeature() -> String {
+pub fn only_test_feature() -> String {
     "test".to_owned()
 }
