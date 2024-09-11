@@ -68,6 +68,12 @@ Future<void> lintRustClippy(LintConfig config) async {
         'cargo clippy --target wasm32-unknown-unknown ${config.fix ? "--fix --allow-dirty --allow-staged" : ""} -- -D warnings',
         relativePwd: package);
   }
+
+  for (final package in kRustPackagesTestFeature) {
+    await exec(
+        'cargo clippy --target wasm32-unknown-unknown --features test ${config.fix ? "--fix --allow-dirty --allow-staged" : ""} -- -D warnings',
+        relativePwd: package);
+  }
 }
 
 Future<void> lintDart(LintConfig config) async {

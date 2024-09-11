@@ -77,11 +77,12 @@ class GenerateConfig {
   @CliOption(defaultsTo: false)
   final bool setExitIfChanged;
   final bool coverage;
+  final List<String> features;
 
-  const GenerateConfig({
-    required this.setExitIfChanged,
-    required this.coverage,
-  });
+  const GenerateConfig(
+      {required this.setExitIfChanged,
+      required this.coverage,
+      this.features = const []});
 }
 
 @CliOptions()
@@ -94,10 +95,14 @@ class GeneratePackageConfig implements GenerateConfig {
   @override
   final bool coverage;
 
+  @override
+  final List<String> features;
+
   const GeneratePackageConfig({
     required this.setExitIfChanged,
     required this.package,
     required this.coverage,
+    this.features = const [],
   });
 }
 
@@ -308,6 +313,7 @@ Future<void> generateRunFrbCodegenCommandGenerate(
       relativePwd: config.package,
       coverage: config.coverage,
       coverageName: 'GenerateRunFrbCodegenCommandGenerate',
+      features: config.features,
     );
   });
 }
@@ -371,22 +377,29 @@ Future<void> generateRunFrbCodegenCommandIntegrate(
   });
 }
 
-Future<RunCommandOutput> executeFrbCodegen(
-  String cmd, {
-  required String relativePwd,
-  required bool coverage,
-  bool postRelease = false,
-  required String coverageName,
-  bool nightly = false,
-}) async {
+Future<RunCommandOutput> executeFrbCodegen(String cmd,
+    {required String relativePwd,
+    required bool coverage,
+    bool postRelease = false,
+    required String coverageName,
+    bool nightly = false,
+    List<String> features = const []}) async {
+  String f = features.map((f) {
+    return '--features $f';
+  }).join(' ');
   if (postRelease) {
     assert(!coverage);
-    return await exec('flutter_rust_bridge_codegen $cmd',
-        relativePwd: relativePwd);
+    if (cmd == 'generate') {
+      return await exec('flutter_rust_bridge_codegen $cmd $f',
+          relativePwd: relativePwd);
+    } else {
+      return await exec('flutter_rust_bridge_codegen $cmd',
+          relativePwd: relativePwd);
+    }
   } else {
     final outputCodecovPath = '${getCoverageDir(coverageName)}/codecov.json';
     final ans = await exec(
-      'cargo ${nightly ? "+nightly" : ""} ${coverage ? "llvm-cov run --codecov --output-path $outputCodecovPath" : "run"} --manifest-path ${exec.pwd}frb_codegen/Cargo.toml -- $cmd',
+      'cargo ${nightly ? "+nightly" : ""} ${coverage ? "llvm-cov run $f --codecov --output-path $outputCodecovPath" : "run"} --manifest-path ${exec.pwd}frb_codegen/Cargo.toml -- $cmd',
       relativePwd: relativePwd,
       extraEnv: {'RUST_BACKTRACE': '1'},
     );

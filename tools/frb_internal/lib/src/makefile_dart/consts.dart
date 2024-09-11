@@ -5,8 +5,6 @@ import 'package:flutter_rust_bridge_internal/src/utils/makefile_dart_infra.dart'
 const kRustPackagesAllowWeb = [
   'frb_rust',
   'frb_example/dart_minimal/rust',
-  'frb_example/pure_dart/rust',
-  'frb_example/pure_dart_pde/rust',
   'frb_example/dart_build_rs/rust',
   'frb_example/deliberate_bad/rust',
   'frb_example/integrate_third_party/rust',
@@ -16,6 +14,11 @@ const kRustPackagesAllowWeb = [
   'frb_example/rust_ui_counter',
   'frb_example/rust_ui_todo_list',
   'frb_example/gallery/rust',
+];
+
+const kRustPackagesTestFeature = [
+  'frb_example/pure_dart/rust',
+  'frb_example/pure_dart_pde/rust',
 ];
 
 const kRustPackagesDisallowWeb = [
@@ -36,8 +39,6 @@ const kDartExampleIntegratePackages = [
 
 const kDartExamplePackages = [
   'frb_example/dart_minimal',
-  'frb_example/pure_dart',
-  'frb_example/pure_dart_pde',
   'frb_example/dart_build_rs',
   'frb_example/deliberate_bad',
   'frb_example/integrate_third_party',
@@ -45,6 +46,11 @@ const kDartExamplePackages = [
   'frb_example/rust_ui_todo_list/ui',
   ...kDartExampleIntegratePackages,
   'frb_example/gallery',
+];
+
+const kDartExampleTestFeaturePackages = [
+  'frb_example/pure_dart',
+  'frb_example/pure_dart_pde',
 ];
 
 const kDartNonExamplePackages = [
