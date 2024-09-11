@@ -22,6 +22,7 @@ import 'api/dart_fn_test.dart' as dart_fn_test;
 import 'api/dart_opaque_sync_test.dart' as dart_opaque_sync_test;
 import 'api/dart_opaque_test.dart' as dart_opaque_test;
 import 'api/dyn_trait_test.dart' as dyn_trait_test;
+import 'api/enabled_feature_test.dart' as enabled_feature_test;
 import 'api/enumeration_test.dart' as enumeration_test;
 import 'api/event_listener_test.dart' as event_listener_test;
 import 'api/exception_test.dart' as exception_test;
@@ -84,6 +85,10 @@ import 'api/pseudo_manual/dart_opaque_twin_rust_async_test.dart'
     as dart_opaque_twin_rust_async_test;
 import 'api/pseudo_manual/dart_opaque_twin_sync_test.dart'
     as dart_opaque_twin_sync_test;
+import 'api/pseudo_manual/enabled_feature_twin_rust_async_test.dart'
+    as enabled_feature_twin_rust_async_test;
+import 'api/pseudo_manual/enabled_feature_twin_sync_test.dart'
+    as enabled_feature_twin_sync_test;
 import 'api/pseudo_manual/enumeration_twin_rust_async_test.dart'
     as enumeration_twin_rust_async_test;
 import 'api/pseudo_manual/enumeration_twin_sync_test.dart'
@@ -221,6 +226,7 @@ Future<void> callFileEntrypoints() async {
   await dart_opaque_sync_test.main(skipRustLibInit: true);
   await dart_opaque_test.main(skipRustLibInit: true);
   await dyn_trait_test.main(skipRustLibInit: true);
+  await enabled_feature_test.main(skipRustLibInit: true);
   await enumeration_test.main(skipRustLibInit: true);
   await event_listener_test.main(skipRustLibInit: true);
   await exception_test.main(skipRustLibInit: true);
@@ -266,6 +272,8 @@ Future<void> callFileEntrypoints() async {
   await dart_fn_twin_rust_async_test.main(skipRustLibInit: true);
   await dart_opaque_twin_rust_async_test.main(skipRustLibInit: true);
   await dart_opaque_twin_sync_test.main(skipRustLibInit: true);
+  await enabled_feature_twin_rust_async_test.main(skipRustLibInit: true);
+  await enabled_feature_twin_sync_test.main(skipRustLibInit: true);
   await enumeration_twin_rust_async_test.main(skipRustLibInit: true);
   await enumeration_twin_sync_test.main(skipRustLibInit: true);
   await event_listener_twin_rust_async_test.main(skipRustLibInit: true);

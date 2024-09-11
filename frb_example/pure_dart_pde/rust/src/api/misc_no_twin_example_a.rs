@@ -196,3 +196,9 @@ impl MyStructWithSync {
     #[frb(name = "sync")]
     pub fn sync(&self) {}
 }
+
+// Test if feature flags work correctly
+#[cfg(feature = "test")]
+pub fn onlyTestFeature() -> String {
+    "test".to_owned()
+}
