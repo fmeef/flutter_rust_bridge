@@ -22,8 +22,8 @@ Future<void> functionWithArgTypeNameOverride(
     RustLib.instance.api
         .crateApiMiscNoTwinExampleAFunctionWithArgTypeNameOverride(a: a);
 
-Future<String> onlyTestFeature() =>
-    RustLib.instance.api.crateApiMiscNoTwinExampleAOnlyTestFeature();
+Future<String> onlytestfeature() =>
+    RustLib.instance.api.crateApiMiscNoTwinExampleAOnlytestfeature();
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send + Sync + 'static >>>
 abstract class BoxAnyMyDartTypeRename implements RustOpaqueInterface {}

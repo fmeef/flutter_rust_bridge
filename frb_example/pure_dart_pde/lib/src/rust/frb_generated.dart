@@ -209,7 +209,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.3.0';
 
   @override
-  int get rustContentHash => -149902611;
+  int get rustContentHash => 1320899237;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -1119,7 +1119,7 @@ abstract class RustLibApi extends BaseApi {
   Future<void> crateApiMiscNoTwinExampleAMyStructWithSyncSync(
       {required MyStructWithSync that});
 
-  Future<String> crateApiMiscNoTwinExampleAOnlyTestFeature();
+  Future<String> crateApiMiscNoTwinExampleAOnlytestfeature();
 
   Future<void> crateApiMiscNoTwinExampleASameFunctionNameInDifferentFiles();
 
@@ -13283,7 +13283,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<String> crateApiMiscNoTwinExampleAOnlyTestFeature() {
+  Future<String> crateApiMiscNoTwinExampleAOnlytestfeature() {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -13294,15 +13294,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_String,
         decodeErrorData: null,
       ),
-      constMeta: kCrateApiMiscNoTwinExampleAOnlyTestFeatureConstMeta,
+      constMeta: kCrateApiMiscNoTwinExampleAOnlytestfeatureConstMeta,
       argValues: [],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kCrateApiMiscNoTwinExampleAOnlyTestFeatureConstMeta =>
+  TaskConstMeta get kCrateApiMiscNoTwinExampleAOnlytestfeatureConstMeta =>
       const TaskConstMeta(
-        debugName: "only_test_feature",
+        debugName: "onlytestfeature",
         argNames: [],
       );
 
