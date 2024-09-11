@@ -69,7 +69,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.3.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1320899237;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1297488660;
 
 // Section: executor
 
@@ -9640,7 +9640,7 @@ fn wire__crate__api__misc_no_twin_example_a__my_struct_with_sync_sync_impl(
         },
     )
 }
-fn wire__crate__api__misc_no_twin_example_a__onlytestfeature_impl(
+fn wire__crate__api__misc_no_twin_example_a__onlyTestFeature_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
@@ -9648,7 +9648,7 @@ fn wire__crate__api__misc_no_twin_example_a__onlytestfeature_impl(
 ) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "onlytestfeature",
+            debug_name: "onlyTestFeature",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
@@ -9666,7 +9666,7 @@ fn wire__crate__api__misc_no_twin_example_a__onlytestfeature_impl(
             move |context| {
                 transform_result_sse::<_, ()>((move || {
                     let output_ok =
-                        Result::<_, ()>::Ok(crate::api::misc_no_twin_example_a::onlytestfeature())?;
+                        Result::<_, ()>::Ok(crate::api::misc_no_twin_example_a::onlyTestFeature())?;
                     Ok(output_ok)
                 })())
             }
@@ -41249,7 +41249,7 @@ fn pde_ffi_dispatcher_primary_impl(
 288 => wire__crate__api__misc_no_twin_example_a__item_container_solution_two_twin_normal_create_twin_normal_impl(port, ptr, rust_vec_len, data_len),
 289 => wire__crate__api__misc_no_twin_example_a__item_container_solution_two_twin_normal_get_item_contents_twin_normal_impl(port, ptr, rust_vec_len, data_len),
 290 => wire__crate__api__misc_no_twin_example_a__my_struct_with_sync_sync_impl(port, ptr, rust_vec_len, data_len),
-291 => wire__crate__api__misc_no_twin_example_a__onlytestfeature_impl(port, ptr, rust_vec_len, data_len),
+291 => wire__crate__api__misc_no_twin_example_a__onlyTestFeature_impl(port, ptr, rust_vec_len, data_len),
 292 => wire__crate__api__misc_no_twin_example_a__same_function_name_in_different_files_impl(port, ptr, rust_vec_len, data_len),
 294 => wire__crate__api__misc_no_twin_example_a__struct_with_impl_block_in_another_file_f_impl(port, ptr, rust_vec_len, data_len),
 295 => wire__crate__api__misc_no_twin_example_b__StructInMiscNoTwinExampleB_get_struct_in_misc_no_twin_example_a_impl(port, ptr, rust_vec_len, data_len),
