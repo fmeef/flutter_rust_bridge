@@ -119,6 +119,7 @@ impl InternalConfig {
                     type_64bit_int: config.type_64bit_int.unwrap_or_default(),
                     default_dart_async: config.default_dart_async.unwrap_or(true),
                 },
+                features: config.features.clone(),
             },
             generator,
             polisher: PolisherInternalConfig {

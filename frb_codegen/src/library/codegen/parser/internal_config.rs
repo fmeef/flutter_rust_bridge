@@ -6,4 +6,5 @@ use serde::{Deserialize, Serialize};
 pub(crate) struct ParserInternalConfig {
     pub hir: ParserHirInternalConfig,
     pub mir: ParserMirInternalConfig,
+    pub features: Option<Vec<String>>,
 }

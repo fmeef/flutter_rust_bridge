@@ -9,6 +9,7 @@ use itertools::concat;
 pub(crate) fn parse(
     config: &ParserHirInternalConfig,
     dumper: &Dumper,
+    features: Option<&[String]>,
 ) -> anyhow::Result<HirRawPack> {
     let crates = concat([
         vec![CrateName::self_crate()],
@@ -22,6 +23,7 @@ pub(crate) fn parse(
                 &config.rust_crate_dir,
                 (!crate_name.is_self_crate()).then_some(crate_name),
                 dumper,
+                features,
             )?,
         })
     })

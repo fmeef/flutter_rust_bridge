@@ -34,7 +34,7 @@ fn parse_inner(
     let dumper_mir = dumper.with_content(Mir);
 
     let pb = progress_bar_pack.parse_hir_raw.start();
-    let hir_raw = hir::raw::parse(&config.hir, dumper)?;
+    let hir_raw = hir::raw::parse(&config.hir, dumper, config.features.as_deref())?;
     drop(pb);
 
     let pb = progress_bar_pack.parse_hir_primary.start();
@@ -185,6 +185,7 @@ mod tests {
                 type_64bit_int: false,
                 default_dart_async: true,
             },
+            features: None,
         };
 
         let pack = parse_inner(
