@@ -306,8 +306,10 @@ Future<void> testRust(TestRustConfig config) async {
 Future<void> testRustPackage(TestRustPackageConfig config) async {
   await runPubGetIfNotRunYet('frb_example/dart_minimal');
   await runPubGetIfNotRunYet('frb_example/pure_dart');
-
-  await exec('cargo build', relativePwd: config.package);
+  print("testRustPackage ${config.package}");
+  await exec(
+      'cargo build ${isFeature(config.package) ? "--features internal_feature_for_testing" : ""}',
+      relativePwd: config.package);
 
   final effectiveEnableCoverage = config.coverage &&
       const ['frb_codegen', 'frb_rust'].contains(config.package);
@@ -315,7 +317,7 @@ Future<void> testRustPackage(TestRustPackageConfig config) async {
   final outputCodecovPath =
       '${getCoverageDir('test_rust_package_${config.package.replaceAll("/", "_")}')}/codecov.json';
   await exec(
-      'cargo ${effectiveEnableCoverage ? "llvm-cov --codecov --output-path $outputCodecovPath" : "test"}',
+      'cargo ${effectiveEnableCoverage ? "llvm-cov --codecov --output-path $outputCodecovPath" : "test"} ${isFeature(config.package) ? "--features internal_feature_for_testing" : ""}',
       relativePwd: config.package,
       extraEnv: {
         'FRB_SKIP_GENERATE_FRB_EXAMPLE_TEST': '1',

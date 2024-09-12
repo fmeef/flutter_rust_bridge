@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:build_cli_annotations/build_cli_annotations.dart';
 import 'package:flutter_rust_bridge_internal/src/makefile_dart/consts.dart';
+import 'package:flutter_rust_bridge_internal/src/makefile_dart/misc.dart';
 import 'package:flutter_rust_bridge_internal/src/makefile_dart/release.dart';
 import 'package:flutter_rust_bridge_internal/src/utils/makefile_dart_infra.dart';
 import 'package:flutter_rust_bridge_internal/src/utils/misc_utils.dart';
@@ -55,17 +56,18 @@ Future<void> lintRustFormat(LintConfig config) async {
 Future<void> lintRustClippy(LintConfig config) async {
   for (final package in kRustPackages) {
     if (config.fix) {
-      await exec('cargo fix --allow-dirty --allow-staged',
+      await exec(
+          'cargo fix ${isFeature(package) ? "--features internal_feature_for_testing" : ""} --allow-dirty --allow-staged',
           relativePwd: package);
     }
     await exec(
-        'cargo clippy ${config.fix ? "--fix --allow-dirty --allow-staged" : ""} -- -D warnings',
+        'cargo clippy ${isFeature(package) ? "--features internal_feature_for_testing" : ""} ${config.fix ? "--fix --allow-dirty --allow-staged" : ""} -- -D warnings',
         relativePwd: package);
   }
 
   for (final package in kRustPackagesAllowWeb) {
     await exec(
-        'cargo clippy --target wasm32-unknown-unknown ${config.fix ? "--fix --allow-dirty --allow-staged" : ""} -- -D warnings',
+        'cargo clippy ${(package == "frb_example/pure_dart_pde/rust" || package == "frb_example/pure_dart/rust") ? "--features internal_feature_for_testing" : ""} --target wasm32-unknown-unknown ${config.fix ? "--fix --allow-dirty --allow-staged" : ""} -- -D warnings',
         relativePwd: package);
   }
 }
