@@ -399,7 +399,7 @@ Future<RunCommandOutput> executeFrbCodegen(String cmd,
   } else {
     final outputCodecovPath = '${getCoverageDir(coverageName)}/codecov.json';
     final ans = await exec(
-      'cargo ${nightly ? "+nightly" : ""} ${coverage ? "llvm-cov run $f --codecov --output-path $outputCodecovPath" : "run"} --manifest-path ${exec.pwd}frb_codegen/Cargo.toml -- $cmd',
+      'cargo ${nightly ? "+nightly" : ""} ${coverage ? "llvm-cov run --codecov --output-path $outputCodecovPath" : "run"} $f --manifest-path ${exec.pwd}frb_codegen/Cargo.toml -- $cmd',
       relativePwd: relativePwd,
       extraEnv: {'RUST_BACKTRACE': '1'},
     );

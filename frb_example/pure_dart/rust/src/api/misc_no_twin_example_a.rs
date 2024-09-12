@@ -1,6 +1,5 @@
 // FRB_INTERNAL_GENERATOR: {"forbiddenDuplicatorModes": ["sync", "rustAsync", "sse", "sync sse", "rustAsync sse"]}
 
-use crate::api::rust_opaque::NonCloneDataRaw;
 use crate::frb_generated::RustAutoOpaque;
 use flutter_rust_bridge::frb;
 pub use std::any::Any;

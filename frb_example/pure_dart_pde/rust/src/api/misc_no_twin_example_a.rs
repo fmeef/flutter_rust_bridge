@@ -2,7 +2,6 @@
 
 // FRB_INTERNAL_GENERATOR: {"forbiddenDuplicatorModes": ["sync", "rustAsync", "sse", "sync sse", "rustAsync sse"]}
 
-use crate::api::rust_opaque::NonCloneDataRaw;
 use crate::frb_generated::RustAutoOpaque;
 use flutter_rust_bridge::frb;
 pub use std::any::Any;
@@ -198,25 +197,9 @@ impl MyStructWithSync {
     pub fn sync(&self) {}
 }
 
-#[derive(Debug, Clone, Default)]
-#[frb(opaque)]
-pub struct StructWithRustAutoOpaqueFieldWithManyDeriveInner {}
-
-#[derive(Debug, Clone, Default)]
-pub struct StructWithRustAutoOpaqueFieldWithManyDerive {
-    pub content:
-        crate::frb_generated::RustAutoOpaque<StructWithRustAutoOpaqueFieldWithManyDeriveInner>,
-}
-
-impl StructWithRustAutoOpaqueFieldWithManyDerive {
-    pub fn f(&self) {}
-}
-
-#[derive(Clone)]
-pub struct StructWithRustAutoOpaqueWithNonCloneData {
-    pub content: crate::frb_generated::RustAutoOpaque<NonCloneDataRaw>,
-}
-
-impl StructWithRustAutoOpaqueWithNonCloneData {
-    pub fn f(&self) {}
+// Test if feature flags work correctly
+#[cfg(feature = "test")]
+#[allow(non_snake_case)] // There is a bug in spec_generator that requires camel case
+pub fn onlyTestFeature() -> String {
+    "test".to_owned()
 }
