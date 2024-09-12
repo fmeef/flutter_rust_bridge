@@ -389,8 +389,13 @@ Future<RunCommandOutput> executeFrbCodegen(String cmd,
   }).join(' ');
   if (postRelease) {
     assert(!coverage);
-    return await exec('flutter_rust_bridge_codegen $cmd $f',
-        relativePwd: relativePwd);
+    if (cmd == 'generate') {
+      return await exec('flutter_rust_bridge_codegen $cmd $f',
+          relativePwd: relativePwd);
+    } else {
+      return await exec('flutter_rust_bridge_codegen $cmd',
+          relativePwd: relativePwd);
+    }
   } else {
     final outputCodecovPath = '${getCoverageDir(coverageName)}/codecov.json';
     final ans = await exec(
