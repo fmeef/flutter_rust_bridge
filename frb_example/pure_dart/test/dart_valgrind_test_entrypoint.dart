@@ -28,6 +28,7 @@ import 'api/event_listener_test.dart' as event_listener_test;
 import 'api/exception_test.dart' as exception_test;
 import 'api/external_impl_test.dart' as external_impl_test;
 import 'api/external_type_in_crate_test.dart' as external_type_in_crate_test;
+import 'api/feature_test.dart' as feature_test;
 import 'api/impl_trait_test.dart' as impl_trait_test;
 import 'api/inside_macro_test.dart' as inside_macro_test;
 import 'api/lifetimeable_test.dart' as lifetimeable_test;
@@ -183,6 +184,8 @@ import 'api/pseudo_manual/external_type_in_crate_twin_sync_sse_test.dart'
     as external_type_in_crate_twin_sync_sse_test;
 import 'api/pseudo_manual/external_type_in_crate_twin_sync_test.dart'
     as external_type_in_crate_twin_sync_test;
+import 'api/pseudo_manual/feature_twin_sync_test.dart'
+    as feature_twin_sync_test;
 import 'api/pseudo_manual/impl_trait_twin_sse_test.dart'
     as impl_trait_twin_sse_test;
 import 'api/pseudo_manual/impl_trait_twin_sync_sse_test.dart'
@@ -461,6 +464,7 @@ Future<void> callFileEntrypoints() async {
   await exception_test.main(skipRustLibInit: true);
   await external_impl_test.main(skipRustLibInit: true);
   await external_type_in_crate_test.main(skipRustLibInit: true);
+  await feature_test.main(skipRustLibInit: true);
   await impl_trait_test.main(skipRustLibInit: true);
   await inside_macro_test.main(skipRustLibInit: true);
   await lifetimeable_test.main(skipRustLibInit: true);
@@ -553,6 +557,7 @@ Future<void> callFileEntrypoints() async {
   await external_type_in_crate_twin_sse_test.main(skipRustLibInit: true);
   await external_type_in_crate_twin_sync_sse_test.main(skipRustLibInit: true);
   await external_type_in_crate_twin_sync_test.main(skipRustLibInit: true);
+  await feature_twin_sync_test.main(skipRustLibInit: true);
   await impl_trait_twin_sse_test.main(skipRustLibInit: true);
   await impl_trait_twin_sync_sse_test.main(skipRustLibInit: true);
   await impl_trait_twin_sync_test.main(skipRustLibInit: true);

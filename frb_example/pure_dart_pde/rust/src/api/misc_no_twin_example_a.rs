@@ -220,3 +220,15 @@ pub struct StructWithRustAutoOpaqueWithNonCloneData {
 impl StructWithRustAutoOpaqueWithNonCloneData {
     pub fn f(&self) {}
 }
+
+#[cfg(feature = "test")]
+#[allow(non_snake_case)] // There is a bug in spec_generator that requires camel case
+pub fn getFeatureTest() -> String {
+    "test".to_owned()
+}
+
+#[cfg(not(feature = "test"))]
+#[allow(non_snake_case)] // There is a bug in spec_generator that requires camel case
+pub fn getFeatureTest() -> String {
+    "nottest".to_owned()
+}
