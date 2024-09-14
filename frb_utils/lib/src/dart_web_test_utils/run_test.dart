@@ -22,6 +22,14 @@ Future<void> executeTestWeb(TestWebConfig config) async {
   final webRoot = '$dartRoot/web';
   print('executeTestWeb: Pick dartRoot=$dartRoot');
 
+  List<String> cargoArgs = [];
+
+  if (dartRoot.endsWith('frb_example/pure_dart') ||
+      dartRoot.endsWith('frb_example/pure_dart_pde')) {
+    print("running wtih feature flag test");
+    cargoArgs = ['--features', 'test'];
+  }
+
   print('executeTestWeb: compile');
   await executeBuildWeb(BuildWebArgs(
     output: webRoot,
@@ -30,7 +38,7 @@ Future<void> executeTestWeb(TestWebConfig config) async {
     // TODO make these configurable later when it is publicly used
     //      (now it is only used internally)
     rustCrateDir: '$dartRoot/rust',
-    cargoBuildArgs: [],
+    cargoBuildArgs: cargoArgs,
     wasmBindgenArgs: [],
     dartCompileJsEntrypoint: config.entrypoint,
     // TODO make this configurable later
