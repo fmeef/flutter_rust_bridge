@@ -103,6 +103,11 @@ void _updateVersionInText() {
           '$x/rust/src/**',
           '$x/../src/**',
         ]),
+    ...kDartExampleTestFeaturePackages.expand((x) => [
+          '$x/lib/**',
+          '$x/rust/src/**',
+          '$x/../src/**',
+        ]),
   ]) {
     for (final file in Glob('${exec.pwd}$relativePattern').listSync()) {
       if (file is File) {

@@ -11,6 +11,7 @@ part of 'generate.dart';
 GenerateConfig _$parseGenerateConfigResult(ArgResults result) => GenerateConfig(
       setExitIfChanged: result['set-exit-if-changed'] as bool,
       coverage: result['coverage'] as bool,
+      features: result['features'] as List<String>,
     );
 
 ArgParser _$populateGenerateConfigParser(ArgParser parser) => parser
@@ -19,6 +20,9 @@ ArgParser _$populateGenerateConfigParser(ArgParser parser) => parser
   )
   ..addFlag(
     'coverage',
+  )
+  ..addMultiOption(
+    'features',
   );
 
 final _$parserForGenerateConfig = _$populateGenerateConfigParser(ArgParser());
@@ -33,6 +37,7 @@ GeneratePackageConfig _$parseGeneratePackageConfigResult(ArgResults result) =>
       setExitIfChanged: result['set-exit-if-changed'] as bool,
       package: convertConfigPackage(result['package'] as String),
       coverage: result['coverage'] as bool,
+      features: result['features'] as List<String>,
     );
 
 ArgParser _$populateGeneratePackageConfigParser(ArgParser parser) => parser
@@ -41,6 +46,9 @@ ArgParser _$populateGeneratePackageConfigParser(ArgParser parser) => parser
   )
   ..addFlag(
     'coverage',
+  )
+  ..addMultiOption(
+    'features',
   )
   ..addOption(
     'package',

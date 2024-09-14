@@ -36,8 +36,6 @@ const kDartExampleIntegratePackages = [
 
 const kDartExamplePackages = [
   'frb_example/dart_minimal',
-  'frb_example/pure_dart',
-  'frb_example/pure_dart_pde',
   'frb_example/dart_build_rs',
   'frb_example/deliberate_bad',
   'frb_example/integrate_third_party',
@@ -45,6 +43,11 @@ const kDartExamplePackages = [
   'frb_example/rust_ui_todo_list/ui',
   ...kDartExampleIntegratePackages,
   'frb_example/gallery',
+];
+
+const kDartExampleTestFeaturePackages = [
+  'frb_example/pure_dart',
+  'frb_example/pure_dart_pde',
 ];
 
 const kDartNonExamplePackages = [
@@ -56,6 +59,7 @@ const kDartNonExamplePackages = [
 const kDartPackages = [
   ...kDartNonExamplePackages,
   ...kDartExamplePackages,
+  ...kDartExampleTestFeaturePackages,
 ];
 
 enum DartMode { dart, flutter }

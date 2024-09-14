@@ -82,6 +82,12 @@ Future<void> precommitGenerate() async {
     for (final package in kDartExamplePackages)
       generateRunFrbCodegenCommandGenerate(GeneratePackageConfig(
           setExitIfChanged: false, package: package, coverage: false)),
+    for (final package in kDartExampleTestFeaturePackages)
+      generateRunFrbCodegenCommandGenerate(GeneratePackageConfig(
+          setExitIfChanged: false,
+          package: package,
+          coverage: false,
+          features: ['test'])),
   ]);
 }
 
