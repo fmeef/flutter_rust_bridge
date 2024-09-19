@@ -222,7 +222,6 @@ impl StructWithRustAutoOpaqueWithNonCloneData {
 }
 
 #[cfg(feature = "internal_feature_for_testing")]
-#[allow(non_snake_case)] // There is a bug in spec_generator that requires camel case
-pub fn getFeatureTest() -> String {
+pub fn get_feature_test() -> String {
     "test".to_owned()
 }
