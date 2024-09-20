@@ -211,7 +211,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.4.0';
 
   @override
-  int get rustContentHash => 2078004937;
+  int get rustContentHash => 1395553616;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -1116,12 +1116,12 @@ abstract class RustLibApi extends BaseApi {
   void crateApiMiscNoTwinExampleAStructWithSimpleSetterTwinNormalSimpleSetter(
       {required StructWithSimpleSetterTwinNormal that, required int value});
 
+  Future<String> crateApiMiscNoTwinExampleAFeatureGatedFunction();
+
   Future<void> crateApiMiscNoTwinExampleAFunctionWithArgTypeNameOverride(
       {required BoxAnyMyDartTypeRename a});
 
   Future<void> crateApiMiscNoTwinExampleAFunctionWithCustomNameTwinNormal();
-
-  Future<String> crateApiMiscNoTwinExampleAGetFeatureTest();
 
   Future<ItemContainerSolutionTwoTwinNormal>
       crateApiMiscNoTwinExampleAItemContainerSolutionTwoTwinNormalCreateTwinNormal();
@@ -13271,6 +13271,30 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
 
   @override
+  Future<String> crateApiMiscNoTwinExampleAFeatureGatedFunction() {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 289, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiMiscNoTwinExampleAFeatureGatedFunctionConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiMiscNoTwinExampleAFeatureGatedFunctionConstMeta =>
+      const TaskConstMeta(
+        debugName: "feature_gated_function",
+        argNames: [],
+      );
+
+  @override
   Future<void> crateApiMiscNoTwinExampleAFunctionWithArgTypeNameOverride(
       {required BoxAnyMyDartTypeRename a}) {
     return handler.executeNormal(NormalTask(
@@ -13279,7 +13303,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendSyncstatic(
             a, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 289, port: port_);
+            funcId: 290, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -13305,7 +13329,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 290, port: port_);
+            funcId: 291, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -13324,30 +13348,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             debugName: "function_with_custom_name_twin_normal",
             argNames: [],
           );
-
-  @override
-  Future<String> crateApiMiscNoTwinExampleAGetFeatureTest() {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 291, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_String,
-        decodeErrorData: null,
-      ),
-      constMeta: kCrateApiMiscNoTwinExampleAGetFeatureTestConstMeta,
-      argValues: [],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kCrateApiMiscNoTwinExampleAGetFeatureTestConstMeta =>
-      const TaskConstMeta(
-        debugName: "getFeatureTest",
-        argNames: [],
-      );
 
   @override
   Future<ItemContainerSolutionTwoTwinNormal>

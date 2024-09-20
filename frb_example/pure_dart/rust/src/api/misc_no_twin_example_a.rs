@@ -220,6 +220,6 @@ impl StructWithRustAutoOpaqueWithNonCloneData {
 }
 
 #[cfg(feature = "internal_feature_for_testing")]
-pub fn get_feature_test() -> String {
+pub fn feature_gated_function() -> String {
     "test".to_owned()
 }

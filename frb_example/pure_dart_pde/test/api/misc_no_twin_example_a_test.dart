@@ -47,6 +47,6 @@ Future<void> main({bool skipRustLibInit = false}) async {
   });
 
   test('feature test enabled', () async {
-    expect(await getFeatureTest(), "test");
+    expect(await featureGatedFunction(), "test");
   });
 }

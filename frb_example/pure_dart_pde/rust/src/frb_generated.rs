@@ -70,7 +70,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.4.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 2078004937;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1395553616;
 
 // Section: executor
 
@@ -9568,6 +9568,40 @@ let decode_indices_ = flutter_rust_bridge::for_generated::lockable_compute_decod
  let output_ok = Result::<_,()>::Ok({ crate::api::misc_no_twin_example_a::StructWithSimpleSetterTwinNormal::simple_setter(&mut *api_that_guard, api_value); })?;   Ok(output_ok)
                 })()) })
 }
+fn wire__crate__api__misc_no_twin_example_a__feature_gated_function_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "feature_gated_function",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            deserializer.end();
+            move |context| {
+                transform_result_sse::<_, ()>((move || {
+                    let output_ok = Result::<_, ()>::Ok(
+                        crate::api::misc_no_twin_example_a::feature_gated_function(),
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
 fn wire__crate__api__misc_no_twin_example_a__function_with_arg_type_name_override_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
@@ -9633,39 +9667,6 @@ fn wire__crate__api__misc_no_twin_example_a__function_with_custom_name_twin_norm
                     let output_ok = Result::<_, ()>::Ok({
                         crate::api::misc_no_twin_example_a::function_with_custom_name_twin_normal();
                     })?;
-                    Ok(output_ok)
-                })())
-            }
-        },
-    )
-}
-fn wire__crate__api__misc_no_twin_example_a__getFeatureTest_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "getFeatureTest",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
-        },
-        move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            deserializer.end();
-            move |context| {
-                transform_result_sse::<_, ()>((move || {
-                    let output_ok =
-                        Result::<_, ()>::Ok(crate::api::misc_no_twin_example_a::getFeatureTest())?;
                     Ok(output_ok)
                 })())
             }
@@ -41463,9 +41464,9 @@ fn pde_ffi_dispatcher_primary_impl(
 280 => wire__crate__api__misc_no_twin_example_a__StructWithImplBlockInMultiFile_method_in_a_impl(port, ptr, rust_vec_len, data_len),
 281 => wire__crate__api__misc_no_twin_example_a__StructWithImplBlockInMultiFile_method_in_b_impl(port, ptr, rust_vec_len, data_len),
 282 => wire__crate__api__misc_no_twin_example_a__StructWithRustAutoOpaqueFieldWithManyDeriveInner_default_impl(port, ptr, rust_vec_len, data_len),
-289 => wire__crate__api__misc_no_twin_example_a__function_with_arg_type_name_override_impl(port, ptr, rust_vec_len, data_len),
-290 => wire__crate__api__misc_no_twin_example_a__function_with_custom_name_twin_normal_impl(port, ptr, rust_vec_len, data_len),
-291 => wire__crate__api__misc_no_twin_example_a__getFeatureTest_impl(port, ptr, rust_vec_len, data_len),
+289 => wire__crate__api__misc_no_twin_example_a__feature_gated_function_impl(port, ptr, rust_vec_len, data_len),
+290 => wire__crate__api__misc_no_twin_example_a__function_with_arg_type_name_override_impl(port, ptr, rust_vec_len, data_len),
+291 => wire__crate__api__misc_no_twin_example_a__function_with_custom_name_twin_normal_impl(port, ptr, rust_vec_len, data_len),
 292 => wire__crate__api__misc_no_twin_example_a__item_container_solution_two_twin_normal_create_twin_normal_impl(port, ptr, rust_vec_len, data_len),
 293 => wire__crate__api__misc_no_twin_example_a__item_container_solution_two_twin_normal_get_item_contents_twin_normal_impl(port, ptr, rust_vec_len, data_len),
 294 => wire__crate__api__misc_no_twin_example_a__my_struct_with_sync_sync_impl(port, ptr, rust_vec_len, data_len),
